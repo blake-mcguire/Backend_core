@@ -1,0 +1,7 @@
+6/10/2024
+python naming conventions 
+
+python uses snake case
+
+"snake_case"
+cannot have spaces in variable names
