@@ -1,0 +1,1 @@
+ifs do not get hit if the any if or elif before it returns true, if statements will continue to to get hit even if another if or elif statement already returned true
