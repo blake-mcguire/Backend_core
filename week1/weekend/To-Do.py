@@ -6,19 +6,23 @@ def add_task():                              #Adds Task to a task list
     try:
         task = input("Enter the Task you would like to add!: ")
         due_date = input("Enter The Due Date: ")
-        task_list.append((task, due_date))
-        print(f"You added {task} to your task list!")
-        
+        priority = input("What is the priority level? 1-5: 1 is Highest Priority.")
+        if priority.isdigit() and int(priority) in range(1,6):
+            task_list.append((task, due_date, priority))
+            print(f"You added {task} to your task list!")
+        else:
+            print('Please Enter a number between 1-5 for priority level')
     except Exception as e:
         print(f"An Error Occured: {e}")                               
     
     
     
 def view_task():                                          #Shows the view of tasks that are still open
-    if task_list:   
-        for task in task_list:
+    if task_list:
+        sorted_tasks = sorted(task_list, key=lambda x: x[2])   
+        for task in sorted_tasks:
             print(f"""-----------------------------------
-Task: {task[0]} -- Due: {task[1]}""")
+Task: {task[0]} -- Due: {task[1]} -- Priority: {task[2]}""")
     else:
         print("Your Task List is empty.")
     
@@ -27,9 +31,9 @@ Task: {task[0]} -- Due: {task[1]}""")
 def complete_task():                                   #Marks a task as complete
     if task_list:
         
-        for index, (task, due_date) in enumerate(task_list):
+        for index, (task, due_date, priority) in enumerate(task_list):
             print(f"""------------------------------------
-{index}: {task}; {due_date}""")
+{index}: {task}; {due_date}; {priority}""")
         
         try:    
             complete = input("Enter The Index of The Task You would like to mark complete: ")
@@ -55,8 +59,8 @@ def view_completed_tasks():                                 #Shows The list of T
 
 def delete_task():                                          #deletes a task from the task list
     if task_list:
-        for index, (task, due_date) in enumerate(task_list):
-            print(f"{index}: {task}; {due_date}")
+        for index, (task, due_date, priority) in enumerate(task_list):
+            print(f"{index}: {task}; {due_date}; {priority}")
         
         try:
             del_task = input("Enter the index of the task you would like to delete: ")
