@@ -21,7 +21,7 @@ def view_task():                                          #Shows the view of tas
     if task_list:
         sorted_tasks = sorted(task_list, key=lambda x: x[2])   
         for task in sorted_tasks:
-            print(f"""-----------------------------------
+            print(f"""-----------------------------------------------------
 Task: {task[0]} -- Due: {task[1]} -- Priority: {task[2]}""")
     else:
         print("Your Task List is empty.")
@@ -32,11 +32,12 @@ def complete_task():                                   #Marks a task as complete
     if task_list:
         
         for index, (task, due_date, priority) in enumerate(task_list):
-            print(f"""------------------------------------
+            print(f"""~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {index}: {task}; {due_date}; {priority}""")
         
         try:    
-            complete = input("Enter The Index of The Task You would like to mark complete: ")
+            complete = input("""~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Enter The Index of The Task You would like to mark complete: """)
             complete_task = task_list.pop(int(complete))
             completed_tasks.append(complete_task)
             print(f"You Completed {complete_task[0]}!")
@@ -66,8 +67,8 @@ def delete_task():                                          #deletes a task from
             del_task = input("Enter the index of the task you would like to delete: ")
             task_list.pop(int(del_task))
         
-        except ValueError:
-            print("Please enter a valid Index")
+        except Exception as e:
+            print(f"Error Occured: {e}")
     
     else:
         print("Your Task List is empty!")
